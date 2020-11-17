@@ -29,35 +29,62 @@ class QuestionBank extends StatefulWidget {
 class _QuestionBankState extends State<QuestionBank> {
 
 List<Icon> printIcon =[];
+var count=0;
+String result;
 
 
 void iconsAnswer(bool choicedAnswer){
    bool correctanswer = ques.getCorrectAnswer();
   setState(() {
-   
+ 
+     
    if(ques.number()==9){
-Alert(context: context,title: 'Done', desc:'All question are completed').show();
+Alert(context: context,title: 'Done', desc:passed()).show();
     ques.reset();
-    printIcon.removeRange(0, 9);
+    printIcon.clear();
+    count=0;
+    print(ques.number());
    }
-    if (choicedAnswer==correctanswer) {
+   
+   else if (choicedAnswer==correctanswer) {
+     
       printIcon.add(
         Icon(
           Icons.check,
           color: Colors.green,
         )
       );
+     
+      count++;
+       ques.next();
+      
+        
     }
-    else{
+   else {
+     
       printIcon.add(
         Icon(Icons.close,
         color: Colors.red,
         )
       );
+       ques.next();
+       
     }
-    ques.next();
+      
+   
+   
     
   });
+}
+String passed(){
+  if(count>6){
+    result='you have passed';
+    print(count);
+  }
+  else{
+    result='you have failed';
+  }
+  return result;
 }
 
   @override

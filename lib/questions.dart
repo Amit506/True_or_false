@@ -32,8 +32,9 @@ bool getCorrectAnswer(){
 
 }
 void reset(){
-  _questionNumber=-1;
+  _questionNumber=0;
 }
+
 }
 
 
